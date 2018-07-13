@@ -12,5 +12,15 @@ install:
   - yarn install
 
 script:
+  - echo 'test'
   - yarn build
-  - yarn test
+
+deploy:
+  provider: heroku
+  app: june-practice-12
+  api_key:
+    secure: $HEROKU_KEY
+  on:
+    all_branches: true
+
+
