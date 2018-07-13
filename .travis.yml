@@ -12,6 +12,7 @@ install:
   - yarn install
 
 script:
+  - echo 'test'
   - yarn build
 
 deploy:
