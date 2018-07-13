@@ -13,4 +13,12 @@ install:
 
 script:
   - yarn build
+  - rm build/static/js/*.js.map
   - yarn test
+
+deploy:
+  provider: heroku
+  api_key:
+    secure: $HEROKU_KEY
+
+  app: june-practice-12
