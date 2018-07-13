@@ -7,6 +7,14 @@ class App extends Component {
     throw new Error("some error is happense");
   };
 
+  throwPromiseError = () => {
+    new Promise((_resolve, reject) => {
+      setTimeout(() => {
+        reject("some promise error");
+      }, 1000);
+    });
+  };
+
   render() {
     return (
       <div className="App">
@@ -16,6 +24,7 @@ class App extends Component {
         </header>
         <p className="App-intro">Этот пример написан для 12ого занятия курса react.js loftschool.</p>
         <button onClick={this.throwError}>Throw error</button>
+        <button onClick={this.throwPromiseError}>Throw promise error</button>
       </div>
     );
   }
