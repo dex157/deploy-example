@@ -11,10 +11,6 @@ cache:
 install:
   - yarn install
 
-before_script:
-  - yarn start -- --silent &
-
 script:
   - yarn build
-  - yarn run cypress:run
   - yarn test
