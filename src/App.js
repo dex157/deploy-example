@@ -3,6 +3,10 @@ import logo from "./logo.svg";
 import "./App.css";
 
 class App extends Component {
+  throwError = () => {
+    throw new Error("some error is happense");
+  };
+
   render() {
     return (
       <div className="App">
@@ -11,6 +15,7 @@ class App extends Component {
           <h1 className="App-title">Welcome to React</h1>
         </header>
         <p className="App-intro">Этот пример написан для 12ого занятия курса react.js loftschool.</p>
+        <button onClick={this.throwError}>Throw error</button>
       </div>
     );
   }

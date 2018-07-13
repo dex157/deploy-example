@@ -4,8 +4,10 @@ jobs:
     branches:
       only:
         - master
+
     docker:
       - image: circleci/node:10-browsers
+
     working_directory: ~/app
 
     steps:
@@ -28,12 +30,12 @@ jobs:
 
       - run:
           name: Build app
+          command: ssh -o StrictHostKeyChecking=no
+
+      - run:
+          name: Build app
           command: yarn build
 
       - run:
-          name: Remove current production static
-          command: ssh -o StrictHostKeyChecking=no'
-
-      - run:
           name: Copy code to production server
-          command: scp -rp ./build/*
+          command: scp  -rp ./build/*
