@@ -20,4 +20,7 @@ deploy:
   app: june-practice-12
   api_key:
     secure: $HEROKU_KEY
+  on:
+    all_branches: true
+
 
