@@ -1,0 +1,39 @@
+version: 2
+jobs:
+  build:
+    branches:
+      only:
+        - master
+    docker:
+      - image: circleci/node:10-browsers
+    working_directory: ~/app
+
+    steps:
+      - checkout
+
+      - restore_cache:
+          name: Restore Yarn Package Cache
+          keys:
+            - yarn-packages-{{ .Branch }}-{{ checksum "yarn.lock" }}
+
+      - run:
+          name: Install Dependencies
+          command: yarn install
+
+      - save_cache:
+          name: Save Yarn Package Cache
+          key: yarn-packages-{{ .Branch }}-{{ checksum "yarn.lock" }}
+          paths:
+            - node_modules/
+
+      - run:
+          name: Build app
+          command: yarn build
+
+      - run:
+          name: Remove current production static
+          command: ssh -o StrictHostKeyChecking=no'
+
+      - run:
+          name: Copy code to production server
+          command: scp -rp ./build/*
